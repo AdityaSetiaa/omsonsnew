@@ -22,9 +22,9 @@ function AccountList() {
           </div>
         </div>
         <div className="flex flex-row gap-2 px-4 py-1 border-b border-gray-200 justify-evenly">
-          <span className="w-50 text-left text-sm text-blue-600 hover:text-blue-800 font-sm text-wrap py-1">
-            Switch accounts
-          </span>
+          <Link href="Dashboard/adminpanel"><span className="w-50 text-left text-sm text-blue-600 hover:text-blue-800 font-sm text-wrap py-1">
+            Admin panel
+          </span></Link>
           <span onClick={()=>{console.log("signout clicked")}} className="w-full text-left text-sm text-blue-600 hover:text-blue-800 font-medium py-1">
             <Link href="/auth/login">
             Sign out
