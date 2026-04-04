@@ -12,7 +12,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL;
+const BACKEND_URL = "https://mirisoft.co.in/sas/dealerapi/api";
 const year = new Date().getFullYear();
 
 type Item = {
