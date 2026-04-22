@@ -29,7 +29,7 @@ const NAV: Record<Role, NavItem[]> = {
     { section: "Home",     label: "Dashboard", href: "/dashboard/dealer",      icon: <Home size={15} />          },
     { section: "Orders",   label: "My Order Status", href: "/Pages/Ordermanagement", icon: <ClipboardList size={15} /> },
     { section: "Orders",   label: "My Order history", href: "/orders", icon: <ClipboardList size={15} /> },
-    {                      label: "Add Order",  href: "/Pages/AddOrderForm",    icon: <Plus size={15} />          },
+    {                      label: "Add Order",  href: "/Dashboard/dealer/AddOrderForm",    icon: <Plus size={15} />          },
     { section: "Products", label: "Products",  href: "/Pages/products",        icon: <Package size={15} />       },
   ],
   staff: [
