@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Sidebar from "@/components/layout/sidebar";
-
 type Role = "admin" | "dealer" | "staff";
 
 function resolveUser() {

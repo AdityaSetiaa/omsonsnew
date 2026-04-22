@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+
 import Sidebar from "@/components/layout/sidebar";
 import SmartSearchBar from "@/components/SartSearchBar";
-
 type Role = "admin" | "dealer" | "staff";
 
 function resolveUser() {
