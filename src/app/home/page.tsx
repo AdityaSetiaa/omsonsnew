@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import moment from "moment";
-import { ImageSlider } from "@/components/imageSlider";
+import { ImageSlider } from "@/components/ImageSlider";
 import { bottleProducts, NAV_LINKS, CATEGORY_CARDS } from "@/Assets/dataset";
 import Footer from "@/components/Footer";
 import Link from "next/link";
@@ -108,11 +108,11 @@ async function fetchOrders(id: string): Promise<ApiResponse> {
 // ─── Status badge ─────────────────────────────────────────────────────────────
 
 const statusConf: Record<string, { label: string; dot: string; text: string; bg: string }> = {
-  inprocess:  { label: "In Process", dot: "bg-amber-400",   text: "text-amber-800",   bg: "bg-amber-50 border-amber-200"    },
-  processing: { label: "Processing", dot: "bg-blue-400",    text: "text-blue-800",    bg: "bg-blue-50 border-blue-200"      },
-  dispatched: { label: "Dispatched", dot: "bg-indigo-400",  text: "text-indigo-800",  bg: "bg-indigo-50 border-indigo-200"  },
-  successful: { label: "Successful", dot: "bg-emerald-400", text: "text-emerald-800", bg: "bg-emerald-50 border-emerald-200"},
-  cancelled:  { label: "Cancelled",  dot: "bg-red-400",     text: "text-red-800",     bg: "bg-red-50 border-red-200"        },
+  inprocess: { label: "In Process", dot: "bg-amber-400", text: "text-amber-800", bg: "bg-amber-50 border-amber-200" },
+  processing: { label: "Processing", dot: "bg-blue-400", text: "text-blue-800", bg: "bg-blue-50 border-blue-200" },
+  dispatched: { label: "Dispatched", dot: "bg-indigo-400", text: "text-indigo-800", bg: "bg-indigo-50 border-indigo-200" },
+  successful: { label: "Successful", dot: "bg-emerald-400", text: "text-emerald-800", bg: "bg-emerald-50 border-emerald-200" },
+  cancelled: { label: "Cancelled", dot: "bg-red-400", text: "text-red-800", bg: "bg-red-50 border-red-200" },
 };
 
 function MtStatusBadge({ status }: { status: string }) {
@@ -147,7 +147,7 @@ function SectionHeading({
             <h2 className="text-xl font-bold text-slate-900 tracking-tight">{title} </h2>
             {badge && (
               <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-rose-50 text-rose-600 border border-rose-200">
-                {badge} 
+                {badge}
               </span>
             )}
           </div>
@@ -302,18 +302,18 @@ export default function Page() {
                 <div className="grid grid-cols-2 gap-2 flex-1">
                   {productsLoading
                     ? Array.from({ length: 4 }).map((_, i) => (
-                        <div key={i} className="aspect-square bg-gray-100 rounded animate-pulse" />
-                      ))
+                      <div key={i} className="aspect-square bg-gray-100 rounded animate-pulse" />
+                    ))
                     : previewItems.map((item) => (
-                        <a key={item.SKU} href={cat.link} className="group"
-                          onClick={() => goToProduct(item.SKU, item.Name, item.image)}>
-                          <img src={item.image ?? PLACEHOLDER_IMAGE} alt={item.Name} loading="lazy"
-                            className="w-full aspect-square object-cover rounded group-hover:opacity-90 transition-opacity" />
-                          <span className="text-[11px] mt-1 block text-slate-600 leading-tight line-clamp-2">
-                            {item.label ?? item.Name}
-                          </span>
-                        </a>
-                      ))}
+                      <a key={item.SKU} href={cat.link} className="group"
+                        onClick={() => goToProduct(item.SKU, item.Name, item.image)}>
+                        <img src={item.image ?? PLACEHOLDER_IMAGE} alt={item.Name} loading="lazy"
+                          className="w-full aspect-square object-cover rounded group-hover:opacity-90 transition-opacity" />
+                        <span className="text-[11px] mt-1 block text-slate-600 leading-tight line-clamp-2">
+                          {item.label ?? item.Name}
+                        </span>
+                      </a>
+                    ))}
                 </div>
                 <Link href={"/Products"}
                   className="mt-4 text-sm font-medium text-slate-700 hover:text-slate-900 hover:underline transition-colors">

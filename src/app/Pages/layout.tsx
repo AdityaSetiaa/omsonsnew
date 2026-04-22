@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Sidebar from "@/components/layout/Sidebar";
+import Sidebar from "@/components/layout/sidebar";
 
 type Role = "admin" | "dealer" | "staff";
 
@@ -18,21 +18,21 @@ function resolveUser() {
     if (userData) {
       const p = JSON.parse(userData);
       if (p?.Dealer_Id) return { role: "dealer" as Role, ...p };
-      if (p?.staff_id)  return { role: (p.staff_roletype === "0" ? "admin" : "staff") as Role, ...p };
+      if (p?.staff_id) return { role: (p.staff_roletype === "0" ? "admin" : "staff") as Role, ...p };
     }
     const adminRaw = localStorage.getItem("AdminData") || localStorage.getItem("admin");
     if (adminRaw) {
       const p = JSON.parse(adminRaw);
       if (p && Object.keys(p).length > 0) return { role: "admin" as Role, ...p };
     }
-  } catch (_) {}
+  } catch (_) { }
   return null;
 }
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const [open,   setOpen]   = useState(false);
-  const [user,   setUser]   = useState<any>(null);
+  const [open, setOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
   const [search, setSearch] = useState("");
 
   useEffect(() => { setUser(resolveUser()); }, []);
@@ -42,19 +42,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   // ── Display name — matches embedded logic per role ──
   const displayName =
     role === "dealer" ? (user?.Dealer_Name || "Dealer") :
-    role === "staff"  ? (user?.staff_name  || "Staff")  :
-    user?.name ?? user?.username ?? "Admin";
+      role === "staff" ? (user?.staff_name || "Staff") :
+        user?.name ?? user?.username ?? "Admin";
 
   // ── Subtitle — city for dealer, location·designation for staff, caption for admin ──
   const displaySub =
     role === "dealer" ? user?.Dealer_City ?? "Dealer dashboard" :
-    role === "staff"  ? [user?.staff_location, user?.staff_designation].filter(Boolean).join(" · ") || `ID: ${user?.staff_id ?? ""}` :
-    "System administration dashboard";
+      role === "staff" ? [user?.staff_location, user?.staff_designation].filter(Boolean).join(" · ") || `ID: ${user?.staff_id ?? ""}` :
+        "System administration dashboard";
 
   const searchPlaceholder =
-    role === "admin"  ? "Search orders, dealers, staff…" :
-    role === "dealer" ? "Search orders, products…"       :
-    "Search orders, dealers…";
+    role === "admin" ? "Search orders, dealers, staff…" :
+      role === "dealer" ? "Search orders, products…" :
+        "Search orders, dealers…";
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && search.trim()) {

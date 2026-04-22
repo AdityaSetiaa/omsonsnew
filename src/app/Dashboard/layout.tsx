@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Sidebar from "@/components/layout/Sidebar";
-import SmartSearchBar from "@/components/SmartSearchBar";
+import Sidebar from "@/components/layout/sidebar";
+import SmartSearchBar from "@/components/SartSearchBar";
 
 type Role = "admin" | "dealer" | "staff";
 
@@ -25,7 +25,7 @@ function resolveUser() {
       const p = JSON.parse(adminRaw);
       if (p && Object.keys(p).length > 0) return { role: "admin" as Role, ...p };
     }
-  } catch (_) {}
+  } catch (_) { }
   return null;
 }
 
@@ -40,26 +40,26 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   // ── Display name — matches embedded logic per role ──
   const displayName =
     role === "dealer" ? (user?.Dealer_Name || "Dealer") :
-    role === "staff"  ? (user?.staff_name  || "Staff")  :
-    user?.name ?? user?.username ?? "Admin";
+      role === "staff" ? (user?.staff_name || "Staff") :
+        user?.name ?? user?.username ?? "Admin";
 
   // ── Subtitle ──
   const displaySub =
     role === "dealer" ? user?.Dealer_City ?? "Dealer dashboard" :
-    role === "staff"  ? [user?.staff_location, user?.staff_designation].filter(Boolean).join(" · ") || `ID: ${user?.staff_id ?? ""}` :
-    "System administration dashboard";
+      role === "staff" ? [user?.staff_location, user?.staff_designation].filter(Boolean).join(" · ") || `ID: ${user?.staff_id ?? ""}` :
+        "System administration dashboard";
 
   // ── Per-role search placeholder ──
   const searchPlaceholder =
-    role === "admin"  ? "Search orders, dealers, staff…" :
-    role === "dealer" ? "Search orders, products…"       :
-    "Search orders, dealers…";
+    role === "admin" ? "Search orders, dealers, staff…" :
+      role === "dealer" ? "Search orders, products…" :
+        "Search orders, dealers…";
 
   // ── User ID for API calls that need an id param ──
   const userId =
     role === "dealer" ? user?.Dealer_Id :
-    role === "staff"  ? user?.staff_id  :
-    undefined;
+      role === "staff" ? user?.staff_id :
+        undefined;
 
   return (
     <>
