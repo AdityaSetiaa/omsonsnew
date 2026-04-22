@@ -5,7 +5,7 @@ export type CartItem = {
   name: string;
   price: number;     // per-pack discounted price
   quantity: number;  // number of packs
-  packSize: number;  // units per pack
+  packSize?: number;  // units per pack
   stock?: number;
 };
 
